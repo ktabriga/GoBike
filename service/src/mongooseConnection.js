@@ -5,7 +5,6 @@ var usuario = '';
 var senha =  '';
 var host = 'localhost';
 var base = 'gobike';
-var stringConnection = "mongodb://" + usuario + senha + host + "/" + base;
 
 if (process.env.PRODUCTION) {
   usuario ='gobikemaster';
@@ -13,6 +12,9 @@ if (process.env.PRODUCTION) {
   host = '@gobike.herokuapp.com:59722'
 }
 
+var stringConnection = "mongodb://" + usuario + senha + host + "/" + base;
+
+console.log(stringConnection);
 mongoose.connect(stringConnection);
 
 var db = mongoose.connection;
