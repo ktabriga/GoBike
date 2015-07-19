@@ -1,0 +1,24 @@
+{
+  "name": "goBike",
+  "version": "0.0.0",
+  "moduleType": [
+    "amd"
+  ],
+  "authors": [
+    "ktabriga"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.3",
+    "curl": "~0.8.12",
+    "materialize": "~0.97.0",
+    "jquery": "~2.1.4"
+  }
+}
