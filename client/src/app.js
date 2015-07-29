@@ -1,5 +1,4 @@
-import {module as maps} from 'google-map';
-
+import maps from './google-map';
 
 angular.module('goBike', [maps])
   .factory('place', place)
@@ -9,30 +8,31 @@ function controller($scope, place) {
   var vm = this;
 
   vm.send = () => {
-    console.log(coordinates($scope.markers));
     if ($scope.markers.length === 0) {
-      return Materialize.toast("Selecione pelo menos um local =)", 4000)
+      return toast("Selecione pelo menos um local")
     }
 
     function coordinates(markers) {
       return markers.map(marker => ({
-        latitude: marker.position.A,
-        longitude: marker.position.F
+        latitude: marker.position.G,
+        longitude: marker.position.K
       }))
     }
 
     place.save(coordinates($scope.markers))
       .then(() => {
         $scope.clearAll();
-        Materialize.toast('Seus locais foram enviados. Obrigado por participar =)', 6000)
+        toast('Seus locais foram enviados. Obrigado por participar =)')
       }).catch(data => {
-        console.log(data);
-        Materialize.toast('Desculpe, seus dados não foram enviados.=(', 4000)
+        toast('Desculpe, seus dados não foram enviados.=(')
       })
 
+  };
+
+  function toast(msg) {
+    Materialize.toast(msg, 4000)
   }
 }
-
 
 function place($http) {
   return {

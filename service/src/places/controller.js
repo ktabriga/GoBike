@@ -1,19 +1,19 @@
-import _ from 'lodash';
-import Place from './Place';
+import _ from 'lodash'
+import Place from './Place'
+import api from '../api'
 
-const find = (req, res, next) =>
-  Place.find(req.query)
-    .then(places => res.json(places))
-    .catch(next);
+var sendResponse = api.sendResponse;
 
-const create = (req, res, next) => {
-  var data = {
+const find = sendResponse(req =>
+  Place.find(req.query));
+
+const create = sendResponse((req, res) =>{
+  res.status(201);
+  var place = new Place({
     coordenates: req.body
-  };
-  var place = new Place(data);
-  place.save(place => res.status(201)
-    .json(place), next);
-};
+  });
+  return new Promise((resolve, reject) => place.save().then(resolve, reject));
+});
 
 export default {
   find,

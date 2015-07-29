@@ -14,21 +14,25 @@ var _Place = require('./Place');
 
 var _Place2 = _interopRequireDefault(_Place);
 
-var find = function find(req, res, next) {
-  return _Place2['default'].find(req.query).then(function (places) {
-    return res.json(places);
-  })['catch'](next);
-};
+var _api = require('../api');
 
-var create = function create(req, res, next) {
-  var data = {
+var _api2 = _interopRequireDefault(_api);
+
+var sendResponse = _api2['default'].sendResponse;
+
+var find = sendResponse(function (req) {
+  return _Place2['default'].find(req.query);
+});
+
+var create = sendResponse(function (req, res) {
+  res.status(201);
+  var place = new _Place2['default']({
     coordenates: req.body
-  };
-  var place = new _Place2['default'](data);
-  place.save(function (place) {
-    return res.status(201).json(place);
-  }, next);
-};
+  });
+  return new Promise(function (resolve, reject) {
+    return place.save().then(resolve, reject);
+  });
+});
 
 exports['default'] = {
   find: find,

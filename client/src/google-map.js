@@ -1,4 +1,6 @@
-export var module = 'maps';
+var module = 'maps';
+
+export default module;
 
 angular.module(module, [])
   .directive('map', directive);

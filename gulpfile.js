@@ -2,7 +2,10 @@ var gulp = require('gulp'),
   concat = require('gulp-concat'),
   babel = require('gulp-babel'),
   sourcemaps = require('gulp-sourcemaps'),
-  sass = require('gulp-sass');
+  sass = require('gulp-sass'),
+  babelify = require('babelify'),
+  browserify = require('browserify'),
+  source = require('vinyl-source-stream');
 
 var paths = {
   api: ['./service/src/**/*.js'],
@@ -19,14 +22,12 @@ gulp.task('scripts-service', function () {
 });
 
 gulp.task('scripts-client', function () {
-  return gulp.src(paths.client)
-    .pipe(sourcemaps.init())
-    .pipe(babel({
-      modules: 'amd',
-      moduleIds: true
-    }))
-    .pipe(concat('all.js'))
-    .pipe(sourcemaps.write('.'))
+  browserify({
+    entries: './client/src/app.js',
+    debug: true
+  }).transform(babelify)
+    .bundle()
+    .pipe(source('all.js'))
     .pipe(gulp.dest('./client/build'));
 });
 

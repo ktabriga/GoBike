@@ -16,8 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4.3",
-    "curl": "~0.8.12",
+    "angular": "~1.4.3"
     "materialize": "~0.97.0",
     "jquery": "~2.1.4"
   }

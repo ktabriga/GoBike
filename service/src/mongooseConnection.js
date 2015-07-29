@@ -6,14 +6,11 @@ var senha =  '';
 var host = 'localhost';
 var base = 'gobike';
 
-
 if (process.env.PRODUCTION) {
   usuario ='master';
   senha = ':gobike123';
   host = '@ds059722.mongolab.com:59722'
 }
-
-
 
 var stringConnection = "mongodb://" + usuario + senha + host + "/" + base;
 

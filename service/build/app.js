@@ -49,6 +49,7 @@ app.use(function (req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function (err, req, res, next) {
+    console.log(err.stack);
     res.status(err.status || 400).json({
       message: err.message,
       error: err
