@@ -4,7 +4,7 @@ import api from '../api'
 
 var sendResponse = api.sendResponse;
 
-const find = sendResponse(req => new Place.find(req.query));
+const find = sendResponse(req => Place.find(req.query));
 
 const create = sendResponse((req, res) =>{
   res.status(201);
