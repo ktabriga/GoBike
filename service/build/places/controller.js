@@ -29,9 +29,10 @@ var create = sendResponse(function (req, res) {
   var place = new _Place2['default']({
     coordenates: req.body
   });
-  return new Promise(function (resolve, reject) {
-    return place.save().then(resolve, reject);
-  });
+  return place.save()
+  //return new Promise((resolve, reject) =>
+  //  place.save().then(resolve, reject));
+  ;
 });
 
 exports['default'] = {

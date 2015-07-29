@@ -9,7 +9,7 @@ exports["default"] = {
 
 function sendResponse(fn) {
   return function (req, res, next) {
-    fn(req, res).then(res.json.bind(res))["catch"](next);
+    fn(req, res).then(res.json.bind(res), next);
   };
 }
 module.exports = exports["default"];
